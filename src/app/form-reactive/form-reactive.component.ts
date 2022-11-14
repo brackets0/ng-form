@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, FormControl, NgForm} from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-reactive',
   template: `
+    <h4>app-form-reactive</h4>
     <form [formGroup]="reativeForm" (ngSubmit)="submit(reativeForm)">
       <input formControlName="name">
       <input formControlName="phone">
@@ -16,18 +17,22 @@ import {FormGroup, FormBuilder, FormControl, NgForm} from '@angular/forms';
 })
 export class FormReactiveComponent implements OnInit {
   reativeForm: FormGroup;
+  name = new FormControl("", Validators.required);
+  phone = new FormControl("", Validators.required);
+  check = new FormControl("", Validators.required);
+
   constructor(private fb: FormBuilder) {
-    this.reativeForm = fb.group({
-      name: new FormControl(),
-      phone: new FormControl(),
-      check: new FormControl(),
-    })
+    this.reativeForm = this.fb.group({
+      name: this.name,
+      phone: this.phone,
+      check: this.check,
+    });
   }
 
   ngOnInit(): void {
   }
 
-  updateform = () => {
+  updateform = (data: any) => {
     this.reativeForm.patchValue({
       // new data config
     });
@@ -42,6 +47,7 @@ export class FormReactiveComponent implements OnInit {
  }
 
  submit(form: FormGroup) {
+  console.log(this.reativeForm.getRawValue());
   console.log(form);
  }
 

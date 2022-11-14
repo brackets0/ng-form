@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { of } from 'rxjs';
 
 @Component({
@@ -23,7 +23,7 @@ import { of } from 'rxjs';
     }
   `]
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   points = [
     {
       title: 'form-reactive',
@@ -34,6 +34,10 @@ export class MenuComponent implements OnInit {
       url: '/form-template',
     },
     {
+      title: 'form-reactive-rxjs',
+      url: '/form-reactive-rxjs',
+    },
+    {
       title: 'form-rxjs',
       url: '/form-rxjs',
     },
@@ -42,8 +46,8 @@ export class MenuComponent implements OnInit {
       url: '/form-component-store',
     },
     {
-      title: 'form-ng-material',
-      url: '/form-ng-material',
+      title: 'form-material',
+      url: '/form-material',
     },
     {
       title: 'form-formly',
@@ -56,8 +60,5 @@ export class MenuComponent implements OnInit {
   ];
   points$ = of(this.points);
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
